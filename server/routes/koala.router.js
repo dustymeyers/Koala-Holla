@@ -9,6 +9,7 @@ const pool = new pg.Pool({
   database: 'koalas',
   host: 'localhost',
   port: 5432,
+  git,
 });
 
 // GET
