@@ -26,7 +26,7 @@ koalaRouter.get('/', (req, res) => {
       res.send(dbRes.rows);
     })
     .catch(function (error) {
-      console.log('error grabbing koalas table', error);
+      console.log('error grabbing koala table', error);
       res.sendStatus(500);
     });
 });
@@ -36,7 +36,7 @@ koalaRouter.post('/', (req, res) => {
   console.log('req.body', req.body);
 
   let sqlText = `
-      INSERT INTO "koalas"
+      INSERT INTO "koala"
         ("name", "gender", "age", "ready_to_transfer", "notes")
       VALUES
         -- using placeholder to prevent SQL Injection
@@ -72,9 +72,9 @@ koalaRouter.put('/:id', (req, res) => {
   let readyForTransfer = req.body.ready_to_transfer;
 
   if (readyForTransfer === 'Y') {
-    sqlText = `UPDATE "koalas SET "ready_to_transfer"=Y WHERE "id"=$1`;
+    sqlText = `UPDATE "koala" SET "ready_to_transfer"=Y WHERE "id"=$1`;
   } else if (readyForTransfer === 'N') {
-    sqlText = `UPDATE "koalas SET "ready_to_transfer"=N WHERE "id"=$1`;
+    sqlText = `UPDATE "koala" SET "ready_to_transfer"=N WHERE "id"=$1`;
   } else {
     // send back a response
     res.sendStatus(500);
