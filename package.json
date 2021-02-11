@@ -10,11 +10,9 @@
   "author": "@devjana",
   "license": "ISC",
   "dependencies": {
-
     "express": "^4.16.4",
     "pg": "^8.5.1"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vkarlen/Koala-Holla.git"
@@ -23,4 +21,4 @@
     "url": "https://github.com/vkarlen/Koala-Holla/issues"
   },
   "homepage": "https://github.com/vkarlen/Koala-Holla#readme"
-
+}

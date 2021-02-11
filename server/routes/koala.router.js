@@ -1,4 +1,3 @@
-const { Router } = require('express');
 const express = require('express');
 const koalaRouter = express.Router();
 
@@ -6,7 +5,7 @@ const koalaRouter = express.Router();
 const pg = require('pg');
 
 const pool = new pg.Pool({
-  database: 'koalas',
+  database: 'koala_holla',
   host: 'localhost',
   port: 5432,
 });
@@ -18,10 +17,11 @@ koalaRouter.get('/', (req, res) => {
     .query(
       `
     -- selecting the entire koalas table
-    SELECT * FROM "koalas"
+    SELECT * FROM "koala"
   `
     )
     .then(function (dbRes) {
+      console.log(dbRes.rows);
       // GET back DB results
       res.send(dbRes.rows);
     })
