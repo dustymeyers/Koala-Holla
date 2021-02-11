@@ -12,14 +12,12 @@ function setupClickListeners() {
   $('#addButton').on('click', function () {
     console.log('in addButton on click');
     // get user input and put in an object
-    // NOT WORKING YET :(
-    // using a test object
     let koalaToSend = {
-      name: 'testName',
-      age: 'testName',
-      gender: 'testName',
-      readyForTransfer: 'testName',
-      notes: 'testName',
+      name: $('#nameIn').val(),
+      age: $('#ageIn').val(),
+      gender: $('#genderIn').val(),
+      readyForTransfer: $('#readyForTransferIn').val(),
+      notes: $('#notesIn').val(),
     };
     // call saveKoala with the new obejct
     saveKoala(koalaToSend);
@@ -35,6 +33,7 @@ function getKoalas() {
   })
     .then((res) => {
       console.log('Got a response on getKoalas', res);
+      postKoalas(res);
     })
     .catch((err) => {
       console.log(err);
@@ -47,5 +46,17 @@ function saveKoala(newKoala) {
 }
 
 function postKoalas(koalaList) {
-  log;
+  console.log('In koalaList');
+
+  for (const koala of koalaList) {
+    $('#viewKoalas').append(`
+      <tr>
+        <td>${koala.name}</td>
+        <td>${koala.age}</td>
+        <td>${koala.gender}</td>
+        <td>${koala.ready_to_transfer}</td>
+        <td>${koala.notes}</td>
+      </tr>
+    `);
+  }
 }
