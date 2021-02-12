@@ -88,7 +88,7 @@ function postKoalas(koalaList) {
   $('#viewKoalas').empty();
   /// conditional
   for (const koala of koalaList) {
-    console.log(koala);
+    //console.log(koala);
 
     //conditional
     if (koala.ready_to_transfer === 'N') {
@@ -119,4 +119,19 @@ function postKoalas(koalaList) {
 
 function deleteKoala() {
   console.log('in delete');
+
+  let koalaId = $(this).data('id');
+
+  // send delete request to server
+  $.ajax({
+    type: 'DELETE',
+    url: `/koalas/remove/${koalaId}`,
+  })
+    .then((response) => {
+      getKoalas();
+    })
+    .catch((err) => {
+      console.log('Failed to delete', err);
+      alert('Could not delete Koala. Try again.');
+    });
 }

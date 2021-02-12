@@ -83,5 +83,12 @@ koalaRouter.put('/ready/:id', (req, res) => {
 });
 
 // DELETE -stretch goal
+koalaRouter.delete('/remove/:id', (req, res) => {
+  console.log('in delete endpoint');
+  let koalaId = req.params.id;
+
+  console.log(koalaId);
+  res.sendStatus(201);
+});
 
 module.exports = koalaRouter;
