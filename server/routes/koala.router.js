@@ -66,24 +66,12 @@ koalaRouter.post('/', (req, res) => {
 koalaRouter.put('/ready/:id', (req, res) => {
   let koalaId = req.params.id;
 
-  // change to yes or no
-
-  let readyForTransfer = req.body.ready_to_transfer;
-
-  if (readyForTransfer === 'Y') {
-    sqlText = `UPDATE "koala" SET "ready_to_transfer"=Y WHERE "id"=$1`;
-  } else if (readyForTransfer === 'N') {
-    sqlText = `UPDATE "koala" SET "ready_to_transfer"=N WHERE "id"=$1`;
-  } else {
-    // send back a response
-    res.sendStatus(500);
-    return;
-  }
+  sqlText = `UPDATE "koala" SET "ready_to_transfer"='Y' WHERE "id"=$1`;
 
   pool
     .query(sqlText, [koalaId])
     .then((resDB) => {
-      console.log(resDB);
+      console.log('resDB is ', resDB);
       res.sendStatus(200);
     })
     .catch((error) => {
