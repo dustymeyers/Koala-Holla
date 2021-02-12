@@ -135,7 +135,7 @@ function deleteKoala() {
 function clearInputs() {
   $('#nameIn').val('');
   $('#ageIn').val('');
-  $('#genderIn').val('');
-  $('#readyForTransferIn').val('');
+  //$('#genderIn').val('');
+  //$('#readyForTransferIn').val('');
   $('#notesIn').val('');
 }
