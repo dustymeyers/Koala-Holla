@@ -19,6 +19,7 @@ koalaRouter.get('/', (req, res) => {
       `
     -- selecting the entire koalas table
     SELECT * FROM "koala"
+    ORDER BY "id"
   `
     )
     .then(function (dbRes) {
@@ -67,8 +68,23 @@ koalaRouter.post('/', (req, res) => {
 // PUT
 koalaRouter.put('/ready/:id', (req, res) => {
   let koalaId = req.params.id;
+  let sqlText;
 
-  sqlText = `UPDATE "koala" SET "ready_to_transfer"='Y' WHERE "id"=$1`;
+  // variable to store req.body return
+
+  console.log('transferBoolean is ', req.body.transferBoolean);
+
+  let yesOrNo = req.body.transferBoolean;
+
+  if (yesOrNo == 'true') {
+    sqlText = `UPDATE "koala" SET "ready_to_transfer"='Y' WHERE "id"=$1`;
+  } else if (yesOrNo == 'false') {
+    sqlText = `UPDATE "koala" SET "ready_to_transfer"='N' WHERE "id"=$1`;
+  } else {
+    // If we don't get an expected direction, send back bad status
+    res.sendStatus(500);
+    return; // Do it now, doesn't run the next set of code.
+  }
 
   pool
     .query(sqlText, [koalaId])

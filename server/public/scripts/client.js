@@ -27,13 +27,16 @@ function setupClickListeners() {
   });
 }
 
+// AJAX PUT REQUEST
 function readyToTransfer() {
   console.log('in readyToTransfer');
   let koalaId = $(this).data('id');
+  let transferBoolean = this.value;
 
   $.ajax({
     url: `/koalas/ready/${koalaId}`,
     type: 'PUT',
+    data: { transferBoolean },
   })
     .then((response) => {
       getKoalas();
@@ -98,7 +101,8 @@ function postKoalas(koalaList) {
         <td>${koala.age}</td>
         <td>${koala.gender}</td>
         <td>${koala.notes}</td>
-        <td><button class="transferReady" data-id="${koala.id}">Transfer</button></td>
+        <td>Not Ready to Transfer</td>
+        <td><button class="transferReady" data-id="${koala.id}" value="true">Transfer</button></td>
         <td><button class="delete" data-id="${koala.id}">Delete</button></td>
       </tr>
     `);
@@ -109,7 +113,8 @@ function postKoalas(koalaList) {
         <td>${koala.age}</td>
         <td>${koala.gender}</td>
         <td>${koala.notes}</td>
-        <td class="readyToGo">Ready</td>
+        <td class="readyToGo">Ready to Transfer</td>
+        <td><button class="transferReady" data-id="${koala.id}" value="false">Don't Transfer</button></td>
         <td><button class="delete" data-id="${koala.id}">Delete</button></td>
       </tr>
       `);
