@@ -62,17 +62,31 @@ function saveKoala(newKoala) {
 function postKoalas(koalaList) {
   console.log('In koalaList');
   $('#viewKoalas').empty();
-
+  /// conditional
   for (const koala of koalaList) {
-    //console.log(koala);
-    $('#viewKoalas').append(`
+    console.log(koala);
+
+    //conditional
+    if (koala.ready_to_transfer === 'N') {
+      $('#viewKoalas').append(`
       <tr>
         <td>${koala.name}</td>
         <td>${koala.age}</td>
         <td>${koala.gender}</td>
-        <td>${koala.ready_to_transfer}</td>
+        <td><button class="transferReady" data-id="${koala.id}">Transfer</button></td>
         <td>${koala.notes}</td>
       </tr>
     `);
+    } else {
+      $('#viewKoalas').append(`
+      <tr>
+        <td>${koala.name}</td>
+        <td>${koala.age}</td>
+        <td>${koala.gender}</td>
+        <td class="readyToGo">Ready</td>
+        <td>${koala.notes}</td>
+      </tr>
+      `);
+    }
   }
 }
