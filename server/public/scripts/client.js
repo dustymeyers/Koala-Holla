@@ -8,6 +8,7 @@ $(document).ready(function () {
   getKoalas();
   // establish click listener for readyToTransfer
   $(document).on('click', '.transferReady', readyToTransfer);
+  $(document).on('click', '.delete', deleteKoala);
 }); // end doc ready
 
 function setupClickListeners() {
@@ -96,8 +97,9 @@ function postKoalas(koalaList) {
         <td>${koala.name}</td>
         <td>${koala.age}</td>
         <td>${koala.gender}</td>
-        <td><button class="transferReady" data-id="${koala.id}">Transfer</button></td>
         <td>${koala.notes}</td>
+        <td><button class="transferReady" data-id="${koala.id}">Transfer</button></td>
+        <td><button class="delete" data-id="${koala.id}">Delete</button></td>
       </tr>
     `);
     } else {
@@ -106,10 +108,15 @@ function postKoalas(koalaList) {
         <td>${koala.name}</td>
         <td>${koala.age}</td>
         <td>${koala.gender}</td>
-        <td class="readyToGo">Ready</td>
         <td>${koala.notes}</td>
+        <td class="readyToGo">Ready</td>
+        <td><button class="delete" data-id="${koala.id}">Delete</button></td>
       </tr>
       `);
     }
   }
+}
+
+function deleteKoala() {
+  console.log('in delete');
 }
