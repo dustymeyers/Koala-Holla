@@ -87,7 +87,7 @@ koalaRouter.put('/ready/:id', (req, res) => {
       res.sendStatus(200);
     })
     .catch((error) => {
-      console.log(''error);
+      console.log('error in PUT', error);
       res.sendStatus(500);
     });
 });
