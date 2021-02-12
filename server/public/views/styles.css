@@ -1,0 +1,56 @@
+body {
+  font-size: 1.5em;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  background-color: dodgerblue;
+  margin: 0;
+}
+
+header {
+  display: flex;
+  font-size: medium;
+  flex-direction: row;
+  height: 225px;
+  flex-wrap: wrap;
+
+  margin-bottom: 0;
+}
+
+header h1,
+header h2,
+header h3 {
+  margin: 0.25em;
+}
+
+header img {
+  width: 200px;
+  margin: 1em;
+}
+
+main {
+  display: block;
+  background-color: white;
+  margin: 0;
+  padding: 1em;
+}
+
+main h2 {
+  margin-top: 0;
+}
+table {
+  width: 100%;
+}
+table,
+th,
+td {
+  border: 1px solid grey;
+  border-collapse: collapse;
+}
+#addressWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#addKoala {
+  margin-bottom: 1em;
+}
