@@ -6,6 +6,8 @@ $(document).ready(function () {
   setupClickListeners();
   // load existing koalas on page load
   getKoalas();
+  // establish click listener for readyToTransfer
+  $(document).on('click', '.transferReady', readyToTransfer);
 }); // end doc ready
 
 function setupClickListeners() {
@@ -23,6 +25,27 @@ function setupClickListeners() {
     saveKoala(koalaToSend);
   });
 }
+
+function readyToTransfer() {
+  console.log('in readyToTransfer');
+  let koalaId = $(this).data('id');
+
+  $.ajax({
+    url: `/koalas/ready/${koalaId}`,
+    type: 'PUT',
+  })
+    .then((response) => {
+      getKoalas();
+    })
+    .catch((err) => {
+      console.log('Here is your error: ', err);
+      alert('Koala not updated.');
+    });
+}
+/* function readyToTransfer() {
+  $(document).on('click', '#transferReady', function () {
+    console.log('in readyToTransfer');
+  }); */
 
 function getKoalas() {
   console.log('in getKoalas');
