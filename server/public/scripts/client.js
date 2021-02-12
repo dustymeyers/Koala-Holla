@@ -13,7 +13,7 @@ $(document).ready(function () {
 
 function setupClickListeners() {
   $('#addButton').on('click', function () {
-    console.log('in addButton on click');
+    //console.log('in addButton on click');
     // get user input and put in an object
     let koalaToSend = {
       name: $('#nameIn').val(),
@@ -22,14 +22,14 @@ function setupClickListeners() {
       ready_to_transfer: $('#readyForTransferIn').val(),
       notes: $('#notesIn').val(),
     };
-    // call saveKoala with the new obejct
+    // call saveKoala with the new object
     saveKoala(koalaToSend);
   });
 }
 
 // AJAX PUT REQUEST
 function readyToTransfer() {
-  console.log('in readyToTransfer');
+  //console.log('in readyToTransfer');
   let koalaId = $(this).data('id');
   let transferBoolean = this.value;
 
@@ -68,7 +68,7 @@ function getKoalas() {
 } // end getKoalas
 
 function saveKoala(newKoala) {
-  console.log('in saveKoala', newKoala);
+  //console.log('in saveKoala', newKoala);
   // ajax call to server to get koalas
   $.ajax({
     type: 'POST',
@@ -76,8 +76,8 @@ function saveKoala(newKoala) {
     data: newKoala,
   })
     .then((res) => {
-      console.log(res);
-
+      //console.log(res);
+      clearInputs();
       getKoalas();
     })
     .catch((err) => {
@@ -87,7 +87,7 @@ function saveKoala(newKoala) {
 }
 
 function postKoalas(koalaList) {
-  console.log('In koalaList');
+  //console.log('In koalaList');
   $('#viewKoalas').empty();
 
   /// conditional
@@ -115,8 +115,7 @@ function postKoalas(koalaList) {
 }
 
 function deleteKoala() {
-  console.log('in delete');
-
+  //console.log('in delete');
   let koalaId = $(this).data('id');
 
   // send delete request to server
@@ -131,4 +130,12 @@ function deleteKoala() {
       console.log('Failed to delete', err);
       alert('Could not delete Koala. Try again.');
     });
+}
+
+function clearInputs() {
+  $('#nameIn').val('');
+  $('#ageIn').val('');
+  $('#genderIn').val('');
+  $('#readyForTransferIn').val('');
+  $('#notesIn').val('');
 }
