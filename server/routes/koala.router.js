@@ -34,6 +34,7 @@ koalaRouter.get('/', (req, res) => {
 
 koalaRouter.post('/', (req, res) => {
   console.log('req.body', req.body);
+  console.log('req transfer', req.body.ready_to_transfer);
 
   let sqlText = `
       INSERT INTO "koala"
@@ -54,6 +55,7 @@ koalaRouter.post('/', (req, res) => {
   pool
     .query(sqlText, queryArgs)
     .then(function (dbRes) {
+      console.log('dbRes', dbRes);
       res.sendStatus(201);
     })
     .catch(function (error) {
