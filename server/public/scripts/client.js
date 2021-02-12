@@ -50,6 +50,7 @@ function saveKoala(newKoala) {
   })
     .then((res) => {
       console.log(res);
+
       getKoalas();
     })
     .catch((err) => {

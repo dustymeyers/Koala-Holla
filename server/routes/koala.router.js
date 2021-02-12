@@ -40,7 +40,7 @@ koalaRouter.post('/', (req, res) => {
         ("name", "gender", "age", "ready_to_transfer", "notes")
       VALUES
         -- using placeholder to prevent SQL Injection
-        ($1, $2, $3, $4, $5,);
+        ($1, $2, $3, $4, $5);
   `;
 
   let queryArgs = [
@@ -79,6 +79,17 @@ koalaRouter.put('/:id', (req, res) => {
     res.sendStatus(500);
     return;
   }
+
+  pool
+    .query(sqlText, [koalaId])
+    .then((resDB) => {
+      console.log(resDB);
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log(''error);
+      res.sendStatus(500);
+    });
 });
 
 // DELETE -stretch goal
