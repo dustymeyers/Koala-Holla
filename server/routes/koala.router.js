@@ -12,6 +12,7 @@ const pool = new pg.Pool({
 
 // GET
 koalaRouter.get('/', (req, res) => {
+  //console.log('trying to get');
   // pool === the DB connection
   pool
     .query(
@@ -21,7 +22,7 @@ koalaRouter.get('/', (req, res) => {
   `
     )
     .then(function (dbRes) {
-      console.log(dbRes.rows);
+      //console.log(dbRes.rows);
       // GET back DB results
       res.send(dbRes.rows);
     })
@@ -31,7 +32,6 @@ koalaRouter.get('/', (req, res) => {
     });
 });
 
-// POST
 koalaRouter.post('/', (req, res) => {
   console.log('req.body', req.body);
 
@@ -45,15 +45,14 @@ koalaRouter.post('/', (req, res) => {
 
   let queryArgs = [
     req.body.name,
-    req.body.body,
     req.body.gender,
+    req.body.age,
     req.body.ready_to_transfer,
     req.body.notes,
   ];
 
   pool
     .query(sqlText, queryArgs)
-
     .then(function (dbRes) {
       res.sendStatus(201);
     })

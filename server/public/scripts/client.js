@@ -29,10 +29,10 @@ function getKoalas() {
   // ajax call to server to get koalas
   $.ajax({
     type: 'GET',
-    URL: '/koalas/',
+    url: '/koalas/',
   })
     .then((res) => {
-      console.log('Got a response on getKoalas', res);
+      //console.log('Got a response on getKoalas', res);
       postKoalas(res);
     })
     .catch((err) => {
@@ -60,8 +60,10 @@ function saveKoala(newKoala) {
 
 function postKoalas(koalaList) {
   console.log('In koalaList');
+  $('#viewKoalas').empty();
 
   for (const koala of koalaList) {
+    //console.log(koala);
     $('#viewKoalas').append(`
       <tr>
         <td>${koala.name}</td>
