@@ -1,0 +1,29 @@
+body {
+  font: 1.5em black Helvetica;
+  background-color: dodgerblue;
+}
+
+header {
+  display: flex;
+  font-size: medium;
+  flex-direction: column;
+  height: 225px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 0;
+}
+
+header img {
+  width: 200px;
+  margin: 1em;
+  float: left;
+  vertical-align: middle;
+}
+
+main {
+  display: block;
+  background-color: white;
+}
+
+#addressWrapper {
+}
