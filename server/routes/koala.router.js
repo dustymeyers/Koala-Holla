@@ -63,7 +63,7 @@ koalaRouter.post('/', (req, res) => {
 });
 
 // PUT
-koalaRouter.put('/:id', (req, res) => {
+koalaRouter.put('/ready/:id', (req, res) => {
   let koalaId = req.params.id;
 
   // change to yes or no
@@ -87,7 +87,7 @@ koalaRouter.put('/:id', (req, res) => {
       res.sendStatus(200);
     })
     .catch((error) => {
-      console.log(''error);
+      console.log('error in PUT', error);
       res.sendStatus(500);
     });
 });
