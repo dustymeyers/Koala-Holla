@@ -89,36 +89,28 @@ function saveKoala(newKoala) {
 function postKoalas(koalaList) {
   console.log('In koalaList');
   $('#viewKoalas').empty();
+
   /// conditional
   for (const koala of koalaList) {
+    let transferBtn = `<button class="transferReady" data-id="${koala.id}" value="false">Don't Transfer</button>`;
+    let transferStatus = 'Ready to Transfer';
     //console.log(koala);
-
-    //conditional
     if (koala.ready_to_transfer === 'N') {
-      $('#viewKoalas').append(`
+      transferBtn = `<button class="transferReady" data-id="${koala.id}" value="true">Transfer</button>`;
+      transferStatus = 'Not Ready to Transfer';
+    }
+
+    $('#viewKoalas').append(`
       <tr>
         <td>${koala.name}</td>
         <td>${koala.age}</td>
         <td>${koala.gender}</td>
         <td>${koala.notes}</td>
-        <td>Not Ready to Transfer</td>
-        <td><button class="transferReady" data-id="${koala.id}" value="true">Transfer</button></td>
-        <td><button class="delete" data-id="${koala.id}">Delete</button></td>
-      </tr>
-    `);
-    } else {
-      $('#viewKoalas').append(`
-      <tr>
-        <td>${koala.name}</td>
-        <td>${koala.age}</td>
-        <td>${koala.gender}</td>
-        <td>${koala.notes}</td>
-        <td class="readyToGo">Ready to Transfer</td>
-        <td><button class="transferReady" data-id="${koala.id}" value="false">Don't Transfer</button></td>
+        <td>${transferStatus}</td>
+        <td>${transferBtn}</td>
         <td><button class="delete" data-id="${koala.id}">Delete</button></td>
       </tr>
       `);
-    }
   }
 }
 
