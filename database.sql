@@ -5,10 +5,10 @@ DROP TABLE IF EXISTS "koala";
 -- Create a table called Koala with these headers
 CREATE TABLE "koala" (
 	"id" SERIAL PRIMARY KEY,
-	"name" VARCHAR(32),
-	"gender" VARCHAR(1),
-	"age" INTEGER,
-	"ready_to_transfer" VARCHAR(1),
+	"name" VARCHAR(32) NOT NULL,
+	"gender" VARCHAR(1) NOT NULL,
+	"age" INTEGER NOT NULL,
+	"ready_to_transfer" VARCHAR(1) NOT NULL,
 	"notes" VARCHAR(1024)
 );
 

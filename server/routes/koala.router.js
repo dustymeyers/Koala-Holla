@@ -34,6 +34,7 @@ koalaRouter.get('/', (req, res) => {
 
 koalaRouter.post('/', (req, res) => {
   console.log('req.body', req.body);
+  console.log('req transfer', req.body.ready_to_transfer);
 
   let sqlText = `
       INSERT INTO "koala"
@@ -54,6 +55,7 @@ koalaRouter.post('/', (req, res) => {
   pool
     .query(sqlText, queryArgs)
     .then(function (dbRes) {
+      console.log('dbRes', dbRes);
       res.sendStatus(201);
     })
     .catch(function (error) {
@@ -66,24 +68,12 @@ koalaRouter.post('/', (req, res) => {
 koalaRouter.put('/ready/:id', (req, res) => {
   let koalaId = req.params.id;
 
-  // change to yes or no
-
-  let readyForTransfer = req.body.ready_to_transfer;
-
-  if (readyForTransfer === 'Y') {
-    sqlText = `UPDATE "koala" SET "ready_to_transfer"=Y WHERE "id"=$1`;
-  } else if (readyForTransfer === 'N') {
-    sqlText = `UPDATE "koala" SET "ready_to_transfer"=N WHERE "id"=$1`;
-  } else {
-    // send back a response
-    res.sendStatus(500);
-    return;
-  }
+  sqlText = `UPDATE "koala" SET "ready_to_transfer"='Y' WHERE "id"=$1`;
 
   pool
     .query(sqlText, [koalaId])
     .then((resDB) => {
-      console.log(resDB);
+      console.log('resDB is ', resDB);
       res.sendStatus(200);
     })
     .catch((error) => {
