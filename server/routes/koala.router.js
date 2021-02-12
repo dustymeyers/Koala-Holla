@@ -63,7 +63,7 @@ koalaRouter.post('/', (req, res) => {
 });
 
 // PUT
-koalaRouter.put('/:id', (req, res) => {
+koalaRouter.put('/ready/:id', (req, res) => {
   let koalaId = req.params.id;
 
   // change to yes or no
